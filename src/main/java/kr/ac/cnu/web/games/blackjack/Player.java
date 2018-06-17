@@ -49,6 +49,11 @@ public class Player {
         currentBet = 0;
     }
 
+    public void blackjack_win() {       // blackjack일 경우 2.5배.
+        balance += currentBet * 2.5;
+        currentBet = 0;
+    }
+
     public void tie() {
         balance += currentBet;
         currentBet = 0;
@@ -65,5 +70,4 @@ public class Player {
     public void stand() {
         this.isPlaying = false;
     }
-
 }

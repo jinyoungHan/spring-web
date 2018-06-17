@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @Service
 public class BlackjackService {
-    private final int DECK_NUMBER = 1;
+    private final int DECK_NUMBER = 10;
     private final Map<String, GameRoom> gameRoomMap = new HashMap<>();
 
     public GameRoom createGameRoom(User user) {

@@ -32,7 +32,12 @@ public class Evaluator {
             if (playerResult > 21) {
                 player.lost();
             } else if (playerResult > dealerResult) {
-                player.win();
+                if(playerResult==21 && player.getHand().getCardCount()==2) {  // 블랙잭일 때, blackjack_win() 호출.
+                    player.blackjack_win(); //
+                }
+                else {
+                    player.win();
+                }
             } else if (playerResult == dealerResult) {
                 player.tie();
             } else {

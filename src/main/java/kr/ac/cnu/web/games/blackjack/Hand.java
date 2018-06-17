@@ -8,7 +8,8 @@ import java.util.List;
 /**
  * Created by rokim on 2018. 5. 26..
  */
-public class Hand {
+public class
+Hand {
     private Deck deck;
     @Getter
     private List<Card> cardList = new ArrayList<>();
@@ -40,5 +41,9 @@ public class Hand {
 
     public void reset() {
         cardList.clear();
+    }
+
+    public int getCardCount(){
+        return cardList.size(); // 현재 카드 갯수를 반환
     }
 }
