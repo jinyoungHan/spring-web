@@ -402,6 +402,17 @@
             color: green;
             font-size: 21px;
         }
+
+        #pId{
+            display: inline-block;
+        }
+        #pMoney {
+            display: inline-block;
+        }
+        #display_info{
+            position: absolute;
+            float: left;
+        }
     </style>
 </head>
 <body>
@@ -418,6 +429,7 @@
     </div>
 </div>
 <div class="page" id="game" style="display: none">
+    <div id="display_info">Name: <span id="pId"></span><br>Money: <span id="pMoney"></span></div> <!--추가된부분-->
     <div class="dealer-cards"></div>
     <div class="clear"></div>
     <div class="player-cards"></div>
@@ -591,6 +603,9 @@
 
         $('#bet').html(gameRoom.playerList[user.name].currentBet);
         $('#money').html(gameRoom.playerList[user.name].balance);
+
+        $('#pId').html(user.name);
+        $('#pMoney').html(gameRoom.playerList[user.name].balance);
     }
 
     function generateCardDiv(rank, suit, shape) {
