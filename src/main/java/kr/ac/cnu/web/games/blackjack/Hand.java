@@ -24,7 +24,18 @@ public class Hand {
     }
 
     public int getCardSum() {
-        return cardList.stream().mapToInt(card -> card.getRank()).sum();
+        int valueOfCard=0, sum=cardList.stream().mapToInt(card -> card.getRank()).sum();
+        Card[] card_List = cardList.stream().toArray(Card[]::new);//카드 리스트를 배열로 생성
+
+        for(int i=0; i<card_List.length; i++){  // 에이스를 1 또는 11중에 유리한방향으로 선택하는 코드
+            valueOfCard = card_List[i].getRank();
+            if(valueOfCard == 1){
+                if(sum<12) {
+                    sum += 10;
+                }
+            }
+        }
+        return sum;
     }
 
     public void reset() {
