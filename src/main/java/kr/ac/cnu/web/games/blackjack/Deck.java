@@ -36,7 +36,12 @@ public class Deck {
     }
 
     public Card drawCard() {
-        if (cardList.size() == 0) {
+        if (cardList.size() <11){        // Card가 10장 이하일경우 모든 카드를 합쳐서 다시 셔플
+            cardList.clear();
+            createCards(1);
+            Collections.shuffle(cardList);
+        }
+        else if (cardList.size() == 0) {
             // TODO 실제 게임에서 이런 일이 절대로 일어나면 안되겠죠?
             // 그래서 보통 게임에서는 N 장의 카드가 남으면 모든 카드를 합쳐서 다시 셔플 합니다.
             // 코드에 그런 내용이 들어가야 함.
