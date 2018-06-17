@@ -64,7 +64,7 @@ public class GameRoom {
         Card c = player.hitCard();
         int hitResult = player.getHand().getCardSum();
 
-        if(hitResult>21){
+        if(hitResult>21){  //카드의 합이 21이 넘을경우 자동으로 종료, 패배
             player.stand();
             evaluator.evaluate();
             this.isFinished = true;
