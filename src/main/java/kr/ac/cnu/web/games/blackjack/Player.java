@@ -46,21 +46,37 @@ public class Player {
 
     public void win() {
         balance += currentBet * 2;
-        currentBet = 0;
+        if(balance<1000){            // 현재 가진 금액이 1000원 이하일경우 all-in
+            currentBet = balance;
+            balance = 0;
+        }
+        // currentBet = 0 을 삭제, default
     }
 
     public void blackjack_win() {       // blackjack일 경우 2.5배.
         balance += currentBet * 2.5;
-        currentBet = 0;
+        if(balance<1000){           // 현재 가진 금액이 1000원 이하일경우 all-in
+            currentBet = balance;
+            balance = 0;
+        }
+        // currentBet = 0 을 삭제, default
     }
 
     public void tie() {
         balance += currentBet;
-        currentBet = 0;
+        if(balance<1000){           // 현재 가진 금액이 1000원 이하일경우 all-in
+            currentBet = balance;
+            balance = 0;
+        }
+        // currentBet = 0 을 삭제, default
     }
 
     public void lost() {
-        currentBet = 0;
+        if(balance<1000){           // 현재 가진 금액이 1000원 이하일경우 all-in
+            currentBet = balance;
+            balance = 0;
+        }
+        // currentBet = 0 을 삭제, default
     }
 
     public Card hitCard() {
