@@ -16,6 +16,7 @@ public class Player {
     private boolean isPlaying;
     @Getter
     private Hand hand;
+    private int flag = 0;
 
     public Player(long seedMoney, Hand hand) {
         this.balance = seedMoney;
@@ -30,10 +31,16 @@ public class Player {
     }
 
     public void placeBet(long bet) {
-        if(balance < bet) {
+        if(balance >1000 && balance<bet) {
             throw new NotEnoughBalanceException();
         }
-        balance -= bet;
+        if(flag == 0){
+            balance -= currentBet;
+            flag++;
+        }
+        if(balance>=1000) {
+            balance -= bet;
+        }
         currentBet = bet;
 
         isPlaying = true;
@@ -50,6 +57,7 @@ public class Player {
             currentBet = balance;
             balance = 0;
         }
+        flag = 0;
         // currentBet = 0 을 삭제, default
     }
 
@@ -59,6 +67,7 @@ public class Player {
             currentBet = balance;
             balance = 0;
         }
+        flag = 0;
         // currentBet = 0 을 삭제, default
     }
 
@@ -68,6 +77,7 @@ public class Player {
             currentBet = balance;
             balance = 0;
         }
+        flag = 0;
         // currentBet = 0 을 삭제, default
     }
 
@@ -76,6 +86,7 @@ public class Player {
             currentBet = balance;
             balance = 0;
         }
+        flag = 0;
         // currentBet = 0 을 삭제, default
     }
 
