@@ -81,6 +81,8 @@
             /*width: 164px;*/
             margin: 0 auto;
             display: inline-block;
+            position: relative;
+            left: 45%;
         }
 
         .dealer-total, .player-total{
@@ -411,7 +413,45 @@
         }
         #display_info{
             position: absolute;
-            float: left;
+            display: inline-block;
+            left:10%;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        #table_bg{
+
+        }
+        #table_img{
+            display: none;
+            z-index: -1;
+            position: absolute; top:0; left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #funds{
+            position: relative;
+            left: 45%;
+        }
+        .none{
+            display: none;
+        }
+        .font_col{
+            color: antiquewhite;
+        }
+        .center{
+            position: relative;
+            left:45%
+        }
+        #deal_button{
+            position: relative;
+            left:48%
+        }
+        #bet{
+            color: antiquewhite;
+        }
+        #warning{
+            color: red;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -428,28 +468,32 @@
         <div class="buttons"><div class="btn" id="create_room_button">Create</div></div>
     </div>
 </div>
-<div class="page" id="game" style="display: none">
-    <div id="display_info">Name: <span id="pId"></span><br>Money: <span id="pMoney"></span></div> <!--추가된부분-->
-    <div class="dealer-cards"></div>
-    <div class="clear"></div>
-    <div class="player-cards"></div>
-    <div class="buttons"><div class="btn" id="hit">Hit</div><div class="btn" id="stand">Stand</div></div>
-    <div class="buttons"><div class="btn" id="deal">Deal</div></div>
-    <div class="betting-area">
-        <b>Your Bet</b><br>
-        <div id="bet" class="bet money">0</div>
+<!--<div class="page" id="game" style="display: none">-->
+    <div class="none" id="table_bg">
+        <img id="table_img" src="./table.png" alt="No image">
+        <div id="display_info">Name: <span id="pId"></span><br>Money: <span id="pMoney"></span></div> <!--추가된부분-->
+        <div class="dealer-cards"></div>
+        <div class="clear"></div>
+        <div class="player-cards"></div>
+    </div>
+    <div class="center" class="none" class="buttons"><div  class="btn" id="hit">Hit</div><div class="btn" id="stand">Stand</div></div>
+    <div id="deal_button" class="none" class="buttons"><div class="btn" id="deal">Deal</div></div>
+    <div class="center" class="none" class="betting-area">
+        <b class="none" >Your Bet</b><br>
+        <div class="none" class="font_col" id="bet" class="bet money">0</div>
         <div>
             <div class="btn" id="more">+</div>
             <div class="btn" id="less">-</div>
         </div>
+        <span id="warning"><strong>위 4개의 버튼은 건드리지마시오.</strong></span>
         <div class="clear"></div>
     </div>
-    <div>
+    <div class="none" id="funds">
         <b>Available Funds</b><br>
-        <span id="money" class="money"></span>
+        <span class="font_col" id="money" class="money"></span>
         <div class="clear"></div>
     </div>
-</div>
+<!--</div>-->
 </body>
 <script src="./jquery-3.3.1.min.js"></script>
 
@@ -496,6 +540,9 @@
             $('#login').hide();
             $('#lobby').hide();
             $('#game').show();
+            $('#table_img').show();
+            $('.none').show();
+            $('#warning').hide();
             gameRoomId = data.roomId;
             drawGameRoom(data);
         });
