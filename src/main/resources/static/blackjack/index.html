@@ -536,9 +536,10 @@
         if (money < bet) {
             bet = money;
         }
-
-        $('#bet').html(currentBet + bet);
-        $('#money').html(money - bet);
+        if (currentBet < 10000){       // 10000으로 상한선을 제한
+            $('#bet').html(currentBet + bet);
+            $('#money').html(money - bet);
+         }
     });
 
     $('#less').click(function(){
