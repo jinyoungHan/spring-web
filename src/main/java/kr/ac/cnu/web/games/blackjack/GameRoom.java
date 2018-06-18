@@ -61,15 +61,15 @@ public class GameRoom {
     public Card hit(String name) {
         Player player = playerList.get(name);
 
-        Card c = player.hitCard();
-        int hitResult = player.getHand().getCardSum();
+        player.hitCard();
 
-        if(hitResult>21){  //카드의 합이 21이 넘을경우 자동으로 종료, 패배
+        if(player.getHand().getCardSum() > 21) {
             player.stand();
-            evaluator.evaluate();
-            this.isFinished = true;
+            playDealer();
+            return null;
         }
-        return c;
+
+        return null;
     }
 
     public void stand(String name) {
