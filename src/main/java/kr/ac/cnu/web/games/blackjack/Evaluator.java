@@ -25,13 +25,10 @@ public class Evaluator {
             int playerResult = player.getHand().getCardSum();
             if (playerResult > 21) {
                 player.lost();
+            } else if(playerResult==21 && player.getHand().getCardCount()==2) {  // 블랙잭일 때, blackjack_win() 호출.
+                player.blackjack_win(); //
             } else if (playerResult > dealerResult) {
-                if(playerResult==21 && player.getHand().getCardCount()==2) {  // 블랙잭일 때, blackjack_win() 호출.
-                    player.blackjack_win(); //
-                }
-                else {
-                    player.win();
-                }
+                player.win();
             } else if (playerResult == dealerResult) {
                 player.tie();
             } else {
