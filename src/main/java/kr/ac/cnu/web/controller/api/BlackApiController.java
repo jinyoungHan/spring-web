@@ -3,6 +3,7 @@ package kr.ac.cnu.web.controller.api;
 import kr.ac.cnu.web.exceptions.NoLoginException;
 import kr.ac.cnu.web.exceptions.NoUserException;
 import kr.ac.cnu.web.games.blackjack.GameRoom;
+import kr.ac.cnu.web.games.blackjack.Player;
 import kr.ac.cnu.web.model.User;
 import kr.ac.cnu.web.repository.UserRepository;
 import kr.ac.cnu.web.service.BlackjackService;
@@ -74,15 +75,25 @@ public class BlackApiController {
     @PostMapping("/rooms/{roomId}/hit")
     public GameRoom hit(@RequestHeader("name") String name, @PathVariable String roomId) {
         User user = this.getUserFromSession(name);
+        GameRoom hitgr = blackjackService.hit(roomId, user); // hit을 통해서 경기에 대한 결과를 얻을 수 있다.
+        Player player = blackjackService.getGameRoom(roomId).getPlayerList().get(name);
+        userRepository.delete(user);
+        user = new User(name, player.getBalance() + player.getCurrentBet());  // 기존 금액과 새로 배팅한 금액의 합
+        userRepository.save(user);
 
-        return blackjackService.hit(roomId, user);
+        return hitgr;
     }
 
     @PostMapping("/rooms/{roomId}/stand")
     public GameRoom stand(@RequestHeader("name") String name, @PathVariable String roomId) {
         User user = this.getUserFromSession(name);
+        GameRoom standgr = blackjackService.stand(roomId, user); // stand를 통해서 경기에 대한 결과를 얻을 수 있다.
+        Player player = blackjackService.getGameRoom(roomId).getPlayerList().get(name);
+        userRepository.delete(user);
+        user = new User(name, player.getBalance() + player.getCurrentBet());  // 기존 금액과 새로 배팅한 금액의 합
+        userRepository.save(user);
 
-        return blackjackService.stand(roomId, user);
+        return standgr;
     }
 
     @GetMapping("/rooms/{roomId}")
